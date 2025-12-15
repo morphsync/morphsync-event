@@ -7,14 +7,14 @@
 
 ## Features
 
-- 🚀 Send HTTP notifications to multiple recipients
-- 🔄 Dynamic placeholder replacement with {{variable}} syntax
-- 🎯 Support for nested object properties ({{user.name}})
-- 📦 Built on Axios for reliable HTTP requests
-- ⚡ Promise-based async/await API
-- 🔧 Custom headers support
-- 📝 Success and error callbacks
-- 🎨 Support for GET, POST, PUT, DELETE methods
+- Send HTTP notifications to multiple recipients
+- Dynamic placeholder replacement with {{variable}} syntax
+- Support for nested object properties
+- Built on Axios for reliable HTTP requests
+- Promise-based async/await API
+- Custom headers support
+- Support for GET, POST, PUT, DELETE methods
+- TypeScript-friendly
 
 ## Installation
 
@@ -27,7 +27,6 @@ npm install @morphsync/event
 ```javascript
 const Event = require('@morphsync/event');
 
-// Create event instance with configuration
 const event = new Event({
     eventRequestUrl: 'https://api.example.com/notify',
     eventRequestType: 'POST',
@@ -40,7 +39,6 @@ const event = new Event({
     ]
 });
 
-// Handle the event and send notifications
 const responses = await event.handleEvent();
 console.log(responses);
 ```
@@ -121,55 +119,7 @@ const event = new Event({
 await event.handleEvent();
 ```
 
-### Error Handling
-
-```javascript
-const Event = require('@morphsync/event');
-
-const event = new Event({
-    eventRequestUrl: 'https://api.example.com/notify',
-    eventRequestType: 'POST',
-    eventRequestData: {
-        message: 'Order {{orderId}} shipped to {{customerName}}'
-    },
-    eventData: [
-        { orderId: '12345', customerName: 'John Doe' }
-    ]
-});
-
-try {
-    const responses = await event.handleEvent();
-    console.log('Notifications sent successfully:', responses);
-} catch (error) {
-    console.error('Event handling failed:', error.message);
-}
-```
-
-## API Reference
-
-### new Event(event)
-
-Creates a new Event instance.
-
-**Parameters:**
-- `event` (object): Event configuration object
-  - `eventRequestUrl` (string, required): The API endpoint URL
-  - `eventRequestType` (string, required): HTTP method (GET, POST, PUT, DELETE)
-  - `eventRequestHeaders` (object, optional): Custom headers for the request
-  - `eventRequestData` (object|string, required): Request data with placeholders
-  - `eventData` (array, required): Array of objects containing replacement values
-
-**Returns:** Event instance
-
-### handleEvent()
-
-Processes the event by sending HTTP requests for each item in eventData.
-
-**Returns:** Promise<Array> - Array of responses from all requests
-
-## Complete Examples
-
-### Email Notification
+### Email Notification Example
 
 ```javascript
 const Event = require('@morphsync/event');
@@ -194,34 +144,6 @@ const event = new Event({
     eventData: [
         { name: 'John', email: 'john@example.com' },
         { name: 'Jane', email: 'jane@example.com' }
-    ]
-});
-
-await event.handleEvent();
-```
-
-### Slack Webhook
-
-```javascript
-const Event = require('@morphsync/event');
-
-const event = new Event({
-    eventRequestUrl: 'https://hooks.slack.com/services/YOUR/WEBHOOK/URL',
-    eventRequestType: 'POST',
-    eventRequestData: {
-        text: 'New order received!',
-        blocks: [
-            {
-                type: 'section',
-                text: {
-                    type: 'mrkdwn',
-                    text: '*Order ID:* {{orderId}}\n*Customer:* {{customerName}}\n*Amount:* ${{amount}}'
-                }
-            }
-        ]
-    },
-    eventData: [
-        { orderId: '12345', customerName: 'John Doe', amount: 99.99 }
     ]
 });
 
@@ -297,7 +219,51 @@ class NotificationController {
 module.exports = NotificationController;
 ```
 
+## API Reference
+
+### Constructor
+
+#### `new Event(event)`
+
+Creates a new Event instance.
+
+**Parameters:**
+- `event` (object): Event configuration object
+  - `eventRequestUrl` (string, required): The API endpoint URL
+  - `eventRequestType` (string, required): HTTP method (GET, POST, PUT, DELETE)
+  - `eventRequestHeaders` (object, optional): Custom headers for the request
+  - `eventRequestData` (object|string, required): Request data with placeholders
+  - `eventData` (array, required): Array of objects containing replacement values
+
+**Returns:** Event instance
+
+**Example:**
+```javascript
+const event = new Event({
+    eventRequestUrl: 'https://api.example.com/notify',
+    eventRequestType: 'POST',
+    eventRequestData: { message: 'Hello {{name}}' },
+    eventData: [{ name: 'John' }]
+});
+```
+
+### Methods
+
+#### `handleEvent()`
+
+Processes the event by sending HTTP requests for each item in eventData.
+
+**Returns:** Promise<Array> - Array of responses from all requests
+
+**Example:**
+```javascript
+const responses = await event.handleEvent();
+console.log(responses);
+```
+
 ## Error Handling
+
+All methods throw errors that can be caught with try-catch:
 
 ```javascript
 const event = new Event({
