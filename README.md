@@ -343,5 +343,4 @@ Morphsync
 ## Support
 
 For issues and questions, please visit the [GitHub repository](https://github.com/morphsync/morphsync-event).
-#   m o r p h s y n c - e v e n t  
- 
+#
