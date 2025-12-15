@@ -1,0 +1,41 @@
+{
+  "name": "@morphsync/event",
+  "version": "1.0.0",
+  "description": "A lightweight event handler for sending HTTP notifications with dynamic placeholder replacement",
+  "main": "index.js",
+  "readme": "README.md",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "event",
+    "notification",
+    "http",
+    "webhook",
+    "placeholder",
+    "template",
+    "morphsync",
+    "event-handler",
+    "axios"
+  ],
+  "author": "Morphsync",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/morphsync/morphsync-event.git"
+  },
+  "bugs": {
+    "url": "https://github.com/morphsync/morphsync-event/issues"
+  },
+  "homepage": "https://github.com/morphsync/morphsync-event#readme",
+  "files": [
+    "index.js",
+    "README.md"
+  ],
+  "dependencies": {
+    "axios": "^1.7.3"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}
