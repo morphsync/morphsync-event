@@ -1,8 +1,9 @@
 {
   "name": "@morphsync/event",
-  "version": "1.0.1",
+  "version": "1.1.1",
   "description": "A lightweight event handler for sending HTTP notifications with dynamic placeholder replacement",
   "main": "index.js",
+  "readme": "README.md",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
